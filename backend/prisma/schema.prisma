@@ -1,0 +1,149 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Usuario del sistema (admin/psicólogo)
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  name      String
+  role      Role     @default(ADMIN)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  appointments Appointment[]
+  posts        Post[]
+}
+
+enum Role {
+  ADMIN
+  PSYCHOLOGIST
+}
+
+// Paciente/Cliente
+model Patient {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  rut       String   @unique
+  password  String
+  name      String
+  phone     String?
+  notes     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  appointments Appointment[]
+}
+
+// Servicios ofrecidos
+model Service {
+  id          String   @id @default(uuid())
+  name        String
+  description String
+  duration    Int      // duración en minutos
+  price       Float?
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  appointments Appointment[]
+}
+
+// Citas
+model Appointment {
+  id              String            @id @default(uuid())
+  date            DateTime
+  status          AppointmentStatus @default(PENDING)
+  notes           String?
+  paymentProofUrl String?           // URL del bono adjunto
+  meetLink        String?           // Enlace de Google Meet
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+
+  patientId String
+  patient   Patient @relation(fields: [patientId], references: [id])
+
+  serviceId String
+  service   Service @relation(fields: [serviceId], references: [id])
+
+  userId String?
+  user   User?   @relation(fields: [userId], references: [id])
+  
+  transcription Transcription?
+}
+
+// Transcripción de sesiones (IA)
+model Transcription {
+  id        String   @id @default(uuid())
+  content   String   // Texto completo
+  summary   String?  // Resumen generado por IA
+  keywords  String[] // Palabras clave detectadas
+  createdAt DateTime @default(now())
+
+  appointmentId String      @unique
+  appointment   Appointment @relation(fields: [appointmentId], references: [id])
+}
+
+enum AppointmentStatus {
+  PENDING
+  CONFIRMED
+  CANCELLED
+  COMPLETED
+}
+
+// Mensajes de contacto
+model ContactMessage {
+  id        String   @id @default(uuid())
+  name      String
+  email     String
+  phone     String?
+  subject   String
+  message   String
+  isRead    Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+// Posts del blog
+model Post {
+  id          String   @id @default(uuid())
+  title       String
+  slug        String   @unique
+  excerpt     String
+  content     String
+  coverImage  String?
+  isPublished Boolean  @default(false)
+  publishedAt DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  authorId String
+  author   User   @relation(fields: [authorId], references: [id])
+
+  categories Category[]
+}
+
+// Categorías del blog
+model Category {
+  id    String @id @default(uuid())
+  name  String @unique
+  slug  String @unique
+
+  posts Post[]
+}
+
+// Horarios disponibles
+model Availability {
+  id        String   @id @default(uuid())
+  dayOfWeek Int      // 0-6 (Domingo-Sábado)
+  startTime String   // HH:mm format
+  endTime   String   // HH:mm format
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
