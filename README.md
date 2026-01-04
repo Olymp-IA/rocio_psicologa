@@ -91,6 +91,29 @@ El frontend es la interfaz de usuario visible para pacientes y especialistas.
 - **Paleta de Colores**: Midnight Blue (`#2C3E50`) & Gold (`#D4AF37`).
 - **Marca**: Rocio Manosalva - Psicología Clínica.
 
+## ✨ Características Principales
+
+- **Experiencia de Usuario (UX)**:
+  - **Intro Splash**: Pantalla de bienvenida inmersiva con animaciones suaves.
+  - **Narrativa de Navegación**: "El Viaje hacia la Calma" (ver documentación).
+  - **Iconografía Personalizada**: Iconos SVG escalables para cada servicio.
+
+- **Panel de Paciente (Dashboard)**:
+  - Gestión de citas y reprogramación.
+  - **Subir Pagos**: Funcionalidad para adjuntar comprobantes.
+  - **Perfil de Usuario**: Edición completa de datos personales (RUT inmutable).
+
+- **Enfoque Online**:
+  - Eliminación de direcciones físicas.
+  - Integración visual para atención remota (Google Meet/Zoom).
+
+## 📚 Documentación Adicional
+
+En la carpeta `/docs` encontrarás documentación detallada sobre las decisiones de diseño y arquitectura:
+
+- [**Narrativa de Navegación**](docs/navigation_narrative.md): Filosofía de diseño y flujos de usuario.
+- [**Equipo del Proyecto**](docs/project_team.md): Roles de los agentes especialistas involucrados.
+
 ## 🛠 Comandos Útiles
 
 - **Build de producción**: `npm run build` (en ambas carpetas).
