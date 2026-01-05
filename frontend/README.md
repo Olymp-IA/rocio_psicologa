@@ -44,6 +44,34 @@ npm run build
 npm start
 ```
 
+## Usuarios de Prueba
+
+El sistema incluye 3 tipos de usuarios para pruebas:
+
+| Rol | Email | Password | Dashboard |
+|-----|-------|----------|-----------|
+| 🧑 Paciente | `paciente@test.com` | `123456` | `/dashboard` |
+| 👩‍⚕️ Especialista | `especialista@test.com` | `123456` | `/dashboard/specialist` |
+| 👑 Admin | `admin@test.com` | `123456` | `/dashboard/admin` |
+
+### Funcionalidades por Rol
+
+**Paciente:**
+- Ver próxima sesión
+- Historial de sesiones
+- Descargar boletas
+
+**Especialista:**
+- Lista de pacientes
+- Próximas sesiones
+- Historial con subida de boletas
+
+**Admin:**
+- Todo lo del especialista
+- Gestión de contenido (servicios, blog)
+- Lista de usuarios
+- Estadísticas
+
 ## Variables de Entorno
 
 Crear `.env.local`:
