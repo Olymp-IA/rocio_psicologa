@@ -5,8 +5,11 @@ import { IconIndividual, IconCouples, IconFamily, IconWorkshops } from '../ui/Ic
 import { useState } from 'react';
 import Modal from '../ui/Modal';
 import Button from '../ui/Button';
-import Link from 'next/link';
+import { useAuth } from '@/lib/AuthContext';
+import { useRouter } from 'next/navigation';
+import LoginForm from '../auth/LoginForm';
 
+// Import services data (keep same data structure)
 const services = [
     {
         Icon: IconIndividual,
@@ -92,6 +95,18 @@ const services = [
 
 export default function Services() {
     const [selectedService, setSelectedService] = useState<typeof services[0] | null>(null);
+    const [showLoginModal, setShowLoginModal] = useState(false);
+    const { user } = useAuth();
+    const router = useRouter();
+
+    const handleBooking = () => {
+        if (!user) {
+            setShowLoginModal(true);
+        } else {
+            // Redirect to dashboard or booking page
+            router.push('/dashboard');
+        }
+    };
 
     return (
         <Section id="services" className="bg-secondary/20 backdrop-blur-sm">
@@ -185,16 +200,23 @@ export default function Services() {
                                 ))}
                             </ul>
 
-                            <Link href="/">
-                                <Button
-                                    className="w-full justify-center"
-                                >
-                                    Reservar Cita
-                                </Button>
-                            </Link>
+                            <Button
+                                className="w-full justify-center"
+                                onClick={handleBooking}
+                            >
+                                Reservar Cita
+                            </Button>
                         </div>
                     </div>
                 )}
+            </Modal>
+
+            {/* Login Modal for Booking */}
+            <Modal isOpen={showLoginModal} onClose={() => setShowLoginModal(false)}>
+                <LoginForm onSuccess={() => {
+                    setShowLoginModal(false);
+                    router.push('/dashboard');
+                }} isModal={true} />
             </Modal>
         </Section>
     );

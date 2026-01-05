@@ -49,19 +49,7 @@ export default function Footer() {
 
                     </div>
 
-                    {/* Services */}
-                    <div className={styles.linksColumn}>
-                        <h4 className={styles.columnTitle}>Servicios</h4>
-                        <ul className={styles.linksList}>
-                            {footerLinks.services.map((link) => (
-                                <li key={link.href}>
-                                    <Link href={link.href} className={styles.link}>
-                                        {link.label}
-                                    </Link>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
+
 
                     {/* Company */}
                     <div className={styles.linksColumn}>
