@@ -8,16 +8,15 @@ import { OlympiaFooter } from './OlympiaFooter';
 
 const footerLinks = {
     services: [
-        { href: '/services#individual', label: 'Terapia Individual' },
-        { href: '/services#couples', label: 'Terapia de Pareja' },
-        { href: '/services#family', label: 'Terapia Familiar' },
-        { href: '/services#online', label: 'Consultas Online' },
+        { href: '/services', label: 'Terapia Individual' },
+        { href: '/services', label: 'Terapia de Pareja' },
+        { href: '/services', label: 'Terapia Familiar' },
+        { href: '/services', label: 'Consultas Online' },
     ],
     company: [
-        { href: '/#about', label: 'Sobre mí' },
+        { href: '/about', label: 'Sobre mí' },
         { href: '/blog', label: 'Blog' },
         { href: '/contact', label: 'Contacto' },
-        { href: '/appointments', label: 'Reservar Cita' },
     ],
     legal: [
         { href: '/privacy', label: 'Política de Privacidad' },
