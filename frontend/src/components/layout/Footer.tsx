@@ -25,11 +25,7 @@ const footerLinks = {
     ],
 };
 
-const socialLinks = [
-    { href: '#', label: 'Instagram', icon: '📸' },
-    { href: '#', label: 'WhatsApp', icon: '💬' },
-    { href: '#', label: 'LinkedIn', icon: '💼' },
-];
+
 
 export default function Footer() {
     const currentYear = new Date().getFullYear();
@@ -41,7 +37,7 @@ export default function Footer() {
                     {/* Brand */}
                     <div className={styles.brand}>
                         <Link href="/" className={styles.logo}>
-                            <span className={styles.logoIcon}>🧠</span>
+                            <img src="/assets/logo.png" alt="Logo" className={styles.logoIcon} style={{ width: '40px', height: '40px', objectFit: 'contain' }} />
                             <div className={styles.logoText}>
                                 <span className={styles.logoName}>Rocío Manosalva</span>
                                 <span className={styles.logoTagline}>Psicología Clínica</span>
@@ -51,18 +47,7 @@ export default function Footer() {
                             Acompañándote en tu camino hacia el bienestar mental y emocional.
                             Terapia profesional con un enfoque humano y cercano.
                         </p>
-                        <div className={styles.social}>
-                            {socialLinks.map((social) => (
-                                <a
-                                    key={social.label}
-                                    href={social.href}
-                                    className={styles.socialLink}
-                                    aria-label={social.label}
-                                >
-                                    {social.icon}
-                                </a>
-                            ))}
-                        </div>
+
                     </div>
 
                     {/* Services */}
@@ -97,10 +82,10 @@ export default function Footer() {
                     <div className={styles.linksColumn}>
                         <h4 className={styles.columnTitle}>Contacto</h4>
                         <div className={styles.contactInfo}>
-                            <p>🌐 Atención Online</p>
-                            <p>📞 +56 9 1234 5678</p>
-                            <p>✉️ contacto@rocio-psicologa.cl</p>
-                            <p>🕐 Lun - Vie: 9:00 - 20:00</p>
+                            <p>Atención Online</p>
+                            <p>+56 9 1234 5678</p>
+                            <p>contacto@rocio-psicologa.cl</p>
+                            <p>Lun - Vie: 9:00 - 20:00</p>
                         </div>
                     </div>
                 </div>
