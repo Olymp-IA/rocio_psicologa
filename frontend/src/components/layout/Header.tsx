@@ -26,10 +26,10 @@ export default function Header() {
     }, []);
 
     const navLinks = [
-        { name: 'Inicio', href: '#hero' },
-        { name: 'Sobre mí', href: '#about' },
-        { name: 'Terapia', href: '#services' },
-        { name: 'Blog', href: '#blog' },
+        { name: 'Inicio', href: '/#hero' },
+        { name: 'Sobre mí', href: '/#about' },
+        { name: 'Terapia', href: '/#services' },
+        { name: 'Blog', href: '/blog' },
     ];
 
     return (
