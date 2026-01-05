@@ -1,63 +1,123 @@
+'use client';
+
+import React from 'react';
 import Link from 'next/link';
-import { Instagram, Linkedin, Mail, Phone, Globe } from 'lucide-react';
+import styles from './Footer.module.css';
+import { OlympiaFooter } from './OlympiaFooter';
+
+
+const footerLinks = {
+    services: [
+        { href: '/services#individual', label: 'Terapia Individual' },
+        { href: '/services#couples', label: 'Terapia de Pareja' },
+        { href: '/services#family', label: 'Terapia Familiar' },
+        { href: '/services#online', label: 'Consultas Online' },
+    ],
+    company: [
+        { href: '/#about', label: 'Sobre mí' },
+        { href: '/blog', label: 'Blog' },
+        { href: '/contact', label: 'Contacto' },
+        { href: '/appointments', label: 'Reservar Cita' },
+    ],
+    legal: [
+        { href: '/privacy', label: 'Política de Privacidad' },
+        { href: '/terms', label: 'Términos de Uso' },
+    ],
+};
+
+const socialLinks = [
+    { href: '#', label: 'Instagram', icon: '📸' },
+    { href: '#', label: 'WhatsApp', icon: '💬' },
+    { href: '#', label: 'LinkedIn', icon: '💼' },
+];
 
 export default function Footer() {
+    const currentYear = new Date().getFullYear();
+
     return (
-        <footer className="bg-primary text-white pt-20 pb-10">
-            <div className="container mx-auto px-4">
-                <div className="grid md:grid-cols-3 gap-12 mb-16">
-                    <div className="space-y-6">
-                        <Link href="/" className="font-heading text-2xl font-bold tracking-tight">
-                            Rocío Manosalva
+        <footer className={styles.footer}>
+            <div className={styles.container}>
+                <div className={styles.grid}>
+                    {/* Brand */}
+                    <div className={styles.brand}>
+                        <Link href="/" className={styles.logo}>
+                            <span className={styles.logoIcon}>🧠</span>
+                            <div className={styles.logoText}>
+                                <span className={styles.logoName}>Rocío Manosalva</span>
+                                <span className={styles.logoTagline}>Psicología Clínica</span>
+                            </div>
                         </Link>
-                        <p className="text-gray-400 text-sm leading-relaxed max-w-xs">
-                            Psicología clínica con enfoque humano. Tu salud mental es el pilar de una vida plena.
+                        <p className={styles.brandDescription}>
+                            Acompañándote en tu camino hacia el bienestar mental y emocional.
+                            Terapia profesional con un enfoque humano y cercano.
                         </p>
-                        <div className="flex gap-4">
-                            <Link href="#" className="p-2 bg-white/5 rounded-full hover:bg-white/10 transition-colors">
-                                <Instagram size={18} />
-                            </Link>
-                            <Link href="#" className="p-2 bg-white/5 rounded-full hover:bg-white/10 transition-colors">
-                                <Linkedin size={18} />
-                            </Link>
+                        <div className={styles.social}>
+                            {socialLinks.map((social) => (
+                                <a
+                                    key={social.label}
+                                    href={social.href}
+                                    className={styles.socialLink}
+                                    aria-label={social.label}
+                                >
+                                    {social.icon}
+                                </a>
+                            ))}
                         </div>
                     </div>
 
-                    <div>
-                        <h3 className="text-lg font-heading font-semibold mb-6">Contacto</h3>
-                        <ul className="space-y-4 text-gray-400 text-sm">
-                            <li className="flex items-start gap-3">
-                                <Globe size={18} className="mt-0.5 text-accent" />
-                                <span>
-                                    Atención Psicológica Online
-                                    <br />
-                                    <span className="text-xs opacity-75">Sesiones por Google Meet / Zoom</span>
-                                </span>
-                            </li>
-                            <li className="flex items-center gap-3">
-                                <Phone size={18} className="text-accent" />
-                                <span>+56 9 1234 5678</span>
-                            </li>
-                            <li className="flex items-center gap-3">
-                                <Mail size={18} className="text-accent" />
-                                <span>contacto@rocio-psicologa.cl</span>
-                            </li>
+                    {/* Services */}
+                    <div className={styles.linksColumn}>
+                        <h4 className={styles.columnTitle}>Servicios</h4>
+                        <ul className={styles.linksList}>
+                            {footerLinks.services.map((link) => (
+                                <li key={link.href}>
+                                    <Link href={link.href} className={styles.link}>
+                                        {link.label}
+                                    </Link>
+                                </li>
+                            ))}
                         </ul>
                     </div>
 
-                    <div>
-                        <h3 className="text-lg font-heading font-semibold mb-6">Enlaces</h3>
-                        <ul className="space-y-3 text-gray-400 text-sm">
-                            <li><Link href="#about" className="hover:text-accent transition-colors">Sobre mí</Link></li>
-                            <li><Link href="#services" className="hover:text-accent transition-colors">Servicios</Link></li>
-                            <li><Link href="#" className="hover:text-accent transition-colors">Preguntas Frecuentes</Link></li>
-                            <li><Link href="#" className="hover:text-accent transition-colors">Política de Privacidad</Link></li>
+                    {/* Company */}
+                    <div className={styles.linksColumn}>
+                        <h4 className={styles.columnTitle}>Navegación</h4>
+                        <ul className={styles.linksList}>
+                            {footerLinks.company.map((link) => (
+                                <li key={link.href}>
+                                    <Link href={link.href} className={styles.link}>
+                                        {link.label}
+                                    </Link>
+                                </li>
+                            ))}
                         </ul>
+                    </div>
+
+                    {/* Contact */}
+                    <div className={styles.linksColumn}>
+                        <h4 className={styles.columnTitle}>Contacto</h4>
+                        <div className={styles.contactInfo}>
+                            <p>🌐 Atención Online</p>
+                            <p>📞 +56 9 1234 5678</p>
+                            <p>✉️ contacto@rocio-psicologa.cl</p>
+                            <p>🕐 Lun - Vie: 9:00 - 20:00</p>
+                        </div>
                     </div>
                 </div>
 
-                <div className="pt-8 border-t border-white/10 text-center text-xs text-gray-500">
-                    <p>© {new Date().getFullYear()} Rocío Manosalva. Todos los derechos reservados.</p>
+                <div className={styles.bottom}>
+                    <p className={styles.copyright}>
+                        © {currentYear} Rocío Manosalva. Todos los derechos reservados.
+                    </p>
+                    <OlympiaFooter variant="minimal" />
+
+                    <div className={styles.legalLinks}>
+                        {footerLinks.legal.map((link) => (
+                            <Link key={link.href} href={link.href} className={styles.legalLink}>
+                                {link.label}
+                            </Link>
+                        ))}
+                    </div>
                 </div>
             </div>
         </footer>

@@ -6,17 +6,44 @@
   :root {
     --font-heading: 'Playfair Display', serif;
     --font-body: 'Inter', sans-serif;
+
+    /* Footer Variables */
+    --bg-dark: #0f172a;
+    --text-inverse: #ffffff;
+    --primary: #5B8A72;
+    --primary-light: #7bb89a;
+    --container-max: 1200px;
+
+    /* Spacing */
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-2xl: 3rem;
+    --spacing-3xl: 4rem;
+    --spacing-4xl: 6rem;
+
+    /* Radius */
+    --radius-md: 0.5rem;
+
+    /* Transitions */
+    --transition-fast: 0.2s ease;
   }
-  
+
   html {
     scroll-behavior: smooth;
   }
-  
+
   body {
     @apply font-body text-text-primary bg-secondary/30 antialiased;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-heading font-medium text-primary;
   }
 }
