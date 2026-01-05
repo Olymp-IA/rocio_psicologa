@@ -8,9 +8,24 @@ import { BouncingBalls } from '@/components/ui/bouncing-balls';
 import IntroSplash from '@/components/ui/IntroSplash';
 
 export default function Home() {
-  const [showIntro, setShowIntro] = useState(true);
+  // Check if intro was already shown in this session
+  const [showIntro, setShowIntro] = useState(false);
+  const [isClient, setIsClient] = useState(false);
 
-  // Optional: Prevent scrolling while intro is visible
+  useEffect(() => {
+    setIsClient(true);
+    const hasSeenIntro = sessionStorage.getItem('hasSeenIntro');
+    if (!hasSeenIntro) {
+      setShowIntro(true);
+    }
+  }, []);
+
+  const handleIntroComplete = () => {
+    sessionStorage.setItem('hasSeenIntro', 'true');
+    setShowIntro(false);
+  };
+
+  // Prevent scrolling while intro is visible
   useEffect(() => {
     if (showIntro) {
       document.body.style.overflow = 'hidden';
@@ -21,7 +36,7 @@ export default function Home() {
 
   return (
     <>
-      {showIntro && <IntroSplash onComplete={() => setShowIntro(false)} />}
+      {showIntro && <IntroSplash onComplete={handleIntroComplete} />}
 
       <div className="fixed inset-0 z-0 pointer-events-none opacity-30">
         <BouncingBalls
